@@ -1,0 +1,67 @@
+.custom-button {
+  position: relative;
+  /* Increased padding and added min-width to stop it from being "tiny" */
+  padding: 14px 40px;
+  min-width: 250px; 
+  min-height: 70px;
+  background: #d18989;
+  color: #e6a5a5;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 3px solid #be463e;
+  border-radius: 70px;
+  cursor: pointer;
+  overflow: visible; 
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure text stays on top of any background effects */
+.button-text {
+  position: relative;
+  z-index: 10;
+  color: #023b34;
+  font-size: 35px;
+  font-weight: 450;
+}
+
+.star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #e9e77d;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+/* Hover States */
+.custom-button:hover {
+  background: #ddafc0; /* Swapping to a dark background makes the stars "pop" more */
+  color: #fec195;      /* Text becomes the peach color */
+  box-shadow: 0 0 30px #fec19566;
+  transform: scale(1.05); /* Slight grow effect */
+}
+
+.custom-button:hover .star {
+  opacity: 1;
+}
+.button-content{
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  color: #000;
+}
+
+/* Explosion coordinates */
+.custom-button:hover .star-1 { top: -50%; left: -20%; filter: drop-shadow(0 0 10px #fffdef); }
+.custom-button:hover .star-2 { top: -60%; left: 50%; filter: drop-shadow(0 0 10px #fffdef); }
+.custom-button:hover .star-3 { top: 130%; left: 10%; filter: drop-shadow(0 0 10px #fffdef); }
+.custom-button:hover .star-4 { top: 40%; left: 120%; filter: drop-shadow(0 0 10px #fffdef); }
+.custom-button:hover .star-5 { top: -30%; left: 100%; filter: drop-shadow(0 0 10px #fffdef); }
+.custom-button:hover .star-6 { top: 120%; left: 110%; filter: drop-shadow(0 0 10px #fffdef); }
+

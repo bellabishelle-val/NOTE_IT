@@ -60,7 +60,7 @@ const Getproducts = () => {
         {/* map the products fetched from the API to the user interface */}
 
         {products.map((product) =>(
-          <div className="col-md-3 justify-content-center mb-3">
+          <div key={product.id} className="col-md-3 justify-content-center mb-3">
           <div className="card shadow">
             <img 
             src={img_url + product.product_photo} 
@@ -70,7 +70,7 @@ const Getproducts = () => {
             <div className="card-body">
               <h2 className="pn"> ~{product.product_name}~ </h2> <br />
 
-              <h5 className="text-left pd">  {product.product_description.slice(0, 80)}...  </h5> <br />
+              <h5 className="text-left pd">  {product.product_description?.slice(0, 80)}...  </h5> <br />
 
               <h2 className="pc"> $ {product.product_cost} </h2> <br />
 
