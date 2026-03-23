@@ -50,38 +50,50 @@ const Getproducts = () => {
 
 
   return (
+  <div
+    style={{
+      backgroundImage: "url('/images/stat.png')",
+      backgroundSize: "cover",
+      minHeight: "100vh"
+    }}
+  >
     <div className='row'>
-        <br /> <br />
+      <br /> <br />
       <h1 className=" title1"> | AVAILABLE STATIONERY |</h1> <br />
 
-        {loading && <Loader/> }
-        <h4 className="text-danger">{error}</h4>
+      {loading && <Loader />}
+      <h4 className="text-danger">{error}</h4>
 
-        {/* map the products fetched from the API to the user interface */}
-
-        {products.map((product) =>(
-          <div key={product.id} className="col-md-3 justify-content-center mb-3">
+      {products.map((product) => (
+        <div key={product.id} className="col-md-3 justify-content-center mb-3">
           <div className="card shadow">
             <img 
-            src={img_url + product.product_photo} 
-            alt="product image"
-            className='product_img mt-3 '  />
+              src={img_url + product.product_photo} 
+              alt="product image"
+              className='product_img mt-3'
+            />
 
             <div className="card-body">
               <h2 className="pn"> ~{product.product_name}~ </h2> <br />
 
-              <h5 className="text-left pd">  {product.product_description?.slice(0, 80)}...  </h5> <br />
+              <h5 className="text-left pd">
+                {product.product_description?.slice(0, 80)}...
+              </h5> <br />
 
               <h2 className="pc"> $ {product.product_cost} </h2> <br />
 
-              <button className="btn btn-outline-success BTN" onClick={() => navigate("/makepayment", { state: { product } })}>PURCHASE NOW</button>
-
+              <button
+                className="btn btn-outline-success BTN"
+                onClick={() => navigate("/makepayment", { state: { product } })}
+              >
+                PURCHASE NOW
+              </button>
             </div>
           </div>
         </div>
-        ) )}
+      ))}
     </div>
-  )
+  </div>
+)
 }
-
-export default Getproducts
+export default Getproducts;

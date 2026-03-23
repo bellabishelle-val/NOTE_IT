@@ -8,6 +8,7 @@ import Getproducts from './components/Getproducts';
 import Makepayment from './components/Makepayment';
 import Notfound from './components/Notfound';
 import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <i className='juu'>Journal Your Ideas To Life!</i>
           <br />
         </header>
+
+        <Navbar /> 
 
         <Routes>
 

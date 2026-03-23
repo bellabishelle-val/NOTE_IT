@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Loader from './Loader'
 import axios from 'axios'
+import Button from './Button'  // Import your reusable Button component
 
 const Addproducts = () => {
   const [product_name, setProductName] = useState("")
@@ -8,110 +9,138 @@ const Addproducts = () => {
   const [product_cost, setProductCost] = useState("")
   const [product_photo, setProductPhoto] = useState("")
 
-  // declare the additional hook to manage the state of the application
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
+  const [error, setError] = useState("")
 
-  // create a function that will handle the submit action
-  const handleSubmit = async (e) =>{
-    // prevent site from reloading
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // setLoading hook with a message (activate it)
     setLoading(true)
 
-    try{
-      // create a form data
+    try {
       const formdata = new FormData()
+      formdata.append("product_name", product_name)
+      formdata.append("product_description", product_description)
+      formdata.append("product_cost", product_cost)
+      formdata.append("product_photo", product_photo)
 
-      //append the details
-      formdata.append("product_name", product_name);
-      formdata.append("product_description", product_description);
-      formdata.append("product_cost", product_cost);
-      formdata.append("product_photo", product_photo);
-
-      // interact with axios to help you use the method post
       const response = await axios.post("https://varli.alwaysdata.net/api/add_product", formdata)
 
-      // set loading hook back to default
       setLoading(false)
-
-      // update the success hook with a message
       setSuccess(response.data.message)
 
-      // clearing the hooks (setting them back to default/empty)
-      setProductName("");
-      setProductDescription("");
-      setProductCost("");
-      setProductPhoto("");
+      setProductName("")
+      setProductDescription("")
+      setProductCost("")
+      setProductPhoto("")
 
+      setTimeout(() => setSuccess(""), 5000)
 
-
-    }
-    catch(error){
-      // set loading hook to default
+    } catch (error) {
       setLoading(false)
-
-      // update the setError with a message
       setError(error.message)
-
     }
-
-
-
   }
+
   return (
-    <div className='row justify-content-center mt-4'>
-        <div className="col-md-6 p-4 card shadow">
-          <h3 className=' title1'>ADD A STATIONERY</h3>
+    <div
+      className='row justify-content-center align-items-center'
+      style={{ minHeight: '90vh', backgroundColor: '#e9ecef' }}
+    >
+      <div
+        className='col-md-8 card shadow-lg p-5 rounded-4'
+        style={{ backgroundColor: '#f0f7ff', minHeight: '75vh' }}
+      >
 
-          {/* bind the loading hook */}
-          {loading && <Loader/>}
+        {/* Page Title */}
+        <h1
+          className='mb-5 text-center'
+          style={{
+            fontSize: '3.5rem',
+            fontFamily: "'Merriweather', serif",
+            fontWeight: '900',
+            color: 'darkcyan',
+            letterSpacing: '2px'
+          }}
+        >
+          ADD STATIONERY
+        </h1>
 
+        {/* Status Messages */}
+        <div className='text-center mb-4'>
+          {loading && <Loader />}
           <h3 className='text-success'>{success}</h3>
           <h4 className='text-danger'>{error}</h4>
+        </div>
 
-          <form onSubmit={handleSubmit}>
-            <input type="text"
-            placeholder='Enter the stationery name'
-            className='form-control '
+        {/* Form */}
+        <form onSubmit={handleSubmit} className='d-flex flex-column align-items-center'>
+
+          <input
+            type="text"
+            placeholder='Enter the stationery name...'
+            className='form-control mb-3 p-3'
+            style={{
+              fontSize: '1.4rem',
+              borderRadius: '15px',
+              border: '1px solid #264361'
+            }}
             required
             value={product_name}
-            onChange={(e) => setProductName(e.target.value)} /> <br />
+            onChange={(e) => setProductName(e.target.value)}
+          />
 
-            {/* {product_name} */}
-
-            <input type="text"
-            placeholder='Enter the stationery description'
-            className='form-control '
+          <input
+            type="text"
+            placeholder='Enter the stationery description...'
+            className='form-control mb-3 p-3'
+            style={{
+              fontSize: '1.4rem',
+              borderRadius: '15px',
+              border: '1px solid #264361'
+            }}
             required
             value={product_description}
-            onChange={(e) => setProductDescription(e.target.value)} /> <br />
+            onChange={(e) => setProductDescription(e.target.value)}
+          />
 
-            {/* {product_description} */}
-
-            <input type="text"
-            placeholder='Enter the price of stationery'
-            className='form-control '
-            required 
+          <input
+            type="number"
+            placeholder='Enter the price of stationery...'
+            className='form-control mb-3 p-3'
+            style={{
+              fontSize: '1.4rem',
+              borderRadius: '15px',
+              border: '1px solid #264361'
+            }}
+            required
             value={product_cost}
-            onChange={(e) => setProductCost(e.target.value)}/> <br />
+            onChange={(e) => setProductCost(e.target.value)}
+          />
 
-            {/* {product_cost} */}
+          <label className='mb-2' style={{ fontWeight: 'bold', fontSize: '20px' }}>
+            Stationery Photo
+          </label>
 
-            <label className='pic'>Stationery Photo</label>
-            <input type="file"
-            className='form-control'
-            required 
+          <input
+            type="file"
+            className='form-control mb-4 p-2'
+            style={{
+              borderRadius: '10px',
+              border: '1px solid #264361'
+            }}
+            required
             accept='image/*'
-            onChange={(e) => setProductPhoto(e.target.files[0])}/> <br />
+            onChange={(e) => setProductPhoto(e.target.files[0])}
+          />
 
-            <input type="submit"
-            value='Add Stationery' 
-            className='btn btn-outline-success'/>
-          </form>
-        </div>
+          {/* Submit Button */}
+          <div className='mb-4' style={{ width: '50%', textAlign: 'center' }}>
+            <Button text="ADD STATIONERY" type="submit" />
+          </div>
+
+        </form>
+      </div>
     </div>
   )
 }
