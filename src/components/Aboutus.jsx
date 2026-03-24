@@ -11,7 +11,7 @@ const Aboutus = () => {
           style={{
             fontVariant: "small-caps",
             textDecoration: "underline",
-            fontSize: "600%",
+            fontSize: "500%",
           }}
         >
           What our Customers Say
@@ -30,7 +30,7 @@ const Aboutus = () => {
               <img
                 src="images/section3-1.webp"
                 className="card-img-top"
-                alt="journal"
+                alt="journal" width="60%" height="500px"
               />
               <div className="card-body">
                 <h5
@@ -51,7 +51,7 @@ const Aboutus = () => {
               <img
                 src="images/section3-2.webp"
                 className="card-img-top"
-                alt="stationery"
+                alt="stationery" width="60%" height="500px"
               />
               <div className="card-body">
                 <h5
@@ -79,7 +79,7 @@ const Aboutus = () => {
             <img
               src="images/section3-3.webp"
               className="card-img-top"
-              alt="products"
+              alt="products" width="60%" height="500px"
             />
             <div className="card-body">
               <h5
@@ -112,7 +112,7 @@ const Aboutus = () => {
             fontVariant: "small-caps",
             textDecoration: "underline wavy",
             color: "rgb(148, 34, 68)",
-            fontSize: "500%",
+            fontSize: "400%",
             fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
@@ -136,7 +136,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "450%",
+              fontSize: "350%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
@@ -168,7 +168,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "450%",
+              fontSize: "350%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
@@ -206,7 +206,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "450%",
+              fontSize: "350%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
