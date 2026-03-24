@@ -96,7 +96,7 @@ const Aboutus = () => {
           </div>
         </div>
         <div className="col-lg-6">
-          <img src="images/space.jpg" alt="book quote" />
+          <img src="images/space.jpg" alt="book quote" width="70%" height="400px" />
         </div>
       </section>
 
