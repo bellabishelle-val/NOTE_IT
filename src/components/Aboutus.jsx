@@ -35,11 +35,11 @@ const Aboutus = () => {
               <div className="card-body">
                 <h5
                   className="card-title text-dark"
-                  style={{ fontVariant: "small-caps", fontSize: "400%" }}
+                  style={{ fontVariant: "small-caps", fontSize: "300%" }}
                 >
                   Amazing Quality!
                 </h5>
-                <p className="card-text" style={{ fontSize: "300%" }}>
+                <p className="card-text" style={{ fontSize: "200%" }}>
                   I love the quality of the journals I purchased. They are
                   perfect for my daily writings.
                 </p>
@@ -56,11 +56,11 @@ const Aboutus = () => {
               <div className="card-body">
                 <h5
                   className="card-title text-dark"
-                  style={{ fontVariant: "small-caps", fontSize: "400%" }}
+                  style={{ fontVariant: "small-caps", fontSize: "300%" }}
                 >
                   Highly Recommended!
                 </h5>
-                <p className="card-text" style={{ fontSize: "300%" }}>
+                <p className="card-text" style={{ fontSize: "200%" }}>
                   The stationery items have changed my note-taking experience. I
                   highly recommend Note IT!
                 </p>
@@ -84,11 +84,11 @@ const Aboutus = () => {
             <div className="card-body">
               <h5
                 className="card-title text-dark"
-                style={{ fontVariant: "small-caps", fontSize: "400%" }}
+                style={{ fontVariant: "small-caps", fontSize: "300%" }}
               >
                 A Creative Haven!
               </h5>
-              <p className="card-text" style={{ fontSize: "300%" }}>
+              <p className="card-text" style={{ fontSize: "200%" }}>
                 Note IT is my go-to for all things creative. Their products
                 inspire me every day.
               </p>
@@ -112,7 +112,7 @@ const Aboutus = () => {
             fontVariant: "small-caps",
             textDecoration: "underline wavy",
             color: "rgb(148, 34, 68)",
-            fontSize: "700%",
+            fontSize: "500%",
             fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
@@ -136,7 +136,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "550%",
+              fontSize: "450%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
@@ -168,7 +168,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "550%",
+              fontSize: "450%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
@@ -206,7 +206,7 @@ const Aboutus = () => {
           <br />
           <h4
             style={{
-              fontSize: "550%",
+              fontSize: "450%",
               fontFamily: "serif",
               textDecoration: "underline",
               textAlign: "center",
@@ -236,7 +236,7 @@ const Aboutus = () => {
           className="display-2"
           style={{
             fontVariant: "small-caps",
-            fontSize: "600%",
+            fontSize: "400%",
             fontFamily:
               "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
             color: "rgb(126, 42, 175)",
@@ -263,7 +263,7 @@ const Aboutus = () => {
         <div className="col-lg-7" style={{ textAlign: "left" }}>
           <br />
           <br />
-          <h4 className="text-success bg-light" style={{ fontSize: "350%" }}>
+          <h4 className="text-success bg-light" style={{ fontSize: "250%" }}>
             Stationery That Inspires Me
           </h4>
           <br />
@@ -272,7 +272,7 @@ const Aboutus = () => {
           </span>
           <br />
           <br />
-          <p className="bg-success" style={{ fontSize: "220%", color: "rgb(2, 26, 13)" }}>
+          <p className="bg-success" style={{ fontSize: "180%", color: "rgb(2, 26, 13)" }}>
             In a world filled with distractions, my stationery from Note IT helps me focus. The
             vibrant...
           </p>
@@ -290,7 +290,7 @@ const Aboutus = () => {
         <div className="col-lg-7" style={{ textAlign: "left" }}>
           <br />
           <br />
-          <h4 className="text-success bg-light" style={{ fontSize: "350%" }}>
+          <h4 className="text-success bg-light" style={{ fontSize: "250%" }}>
             Mini Notebooks: My Travel Companion
           </h4>
           <br />
@@ -317,7 +317,7 @@ const Aboutus = () => {
         <div className="col-lg-7" style={{ textAlign: "justify" }}>
           <br />
           <br />
-          <h4 className="text-success bg-light" style={{ fontSize: "350%" }}>
+          <h4 className="text-success bg-light" style={{ fontSize: "250%" }}>
             My Journey with Note IT Journals
           </h4>
           <br />
@@ -335,6 +335,7 @@ const Aboutus = () => {
           </a>
         </div>
       </section>
+      <br />
 
     </div>
   );
