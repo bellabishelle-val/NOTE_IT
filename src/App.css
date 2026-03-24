@@ -54,10 +54,9 @@
   height: 200px;
   
 }
-.BTN{
-  font-size: 70px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+
+
+
 .pn{
   color: rgb(167, 67, 67);
 }
@@ -74,4 +73,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* ============================= */
+/* TITLE: AVAILABLE STATIONERY */
+/* ============================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap');
+
+/* ============================= */
+/* TITLE: AVAILABLE STATIONERY */
+/* ============================= */
+
+.title1 {
+  font-family: 'Bookman Old Style', serif;  /* classic, elegant font */
+  font-size: 5rem;                          /* commanding height */
+  font-weight: 400;                          /* normal weight, not too thick */
+  letter-spacing: 4px;                       /* stretches letters for tall look */
+  text-align: center;
+  color: teal;                               /* elegant color */
+  margin: 60px 0 ;                            /* breathing room */
+  line-height: 1.2;                          /* vertical spacing */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);/* subtle depth */
+
+  /* Animation */
+  animation: fadeSlideDown 1s ease-out forwards; /* 'forwards' retains final state */
+}
+
+/* Fade and slide down animation */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional hover effect */
+.title1:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }

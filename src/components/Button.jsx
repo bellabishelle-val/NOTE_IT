@@ -2,11 +2,15 @@ import React from "react";
 import "../css/Button.css";
 
 // We changed { children } to { text } here
-const Button = ({ text, type = "button", onClick }) => {
+const Button = ({ text, type = "button", onClick, variant = "primary" }) => {
   return (
-    <button type={type} className="custom-button" onClick={onClick}>
+    <button
+      type={type}
+      className={`custom-button ${variant}`}
+      onClick={onClick}
+    >
       <span className="button-text">{text}</span>
-      
+
       <div className="star star-1"></div>
       <div className="star star-2"></div>
       <div className="star star-3"></div>

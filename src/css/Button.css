@@ -8,7 +8,7 @@
   color: #e6a5a5;
   font-size: 1.2rem;
   font-weight: 700;
-  border: 3px solid #be463e;
+  border: 6px solid #be463e;
   border-radius: 70px;
   cursor: pointer;
   overflow: visible; 
@@ -65,3 +65,19 @@
 .custom-button:hover .star-5 { top: -30%; left: 100%; filter: drop-shadow(0 0 10px #fffdef); }
 .custom-button:hover .star-6 { top: 120%; left: 110%; filter: drop-shadow(0 0 10px #fffdef); }
 
+
+
+/* SECONDARY (Sign Up) — subtle */
+.custom-button.secondary {
+  background-color: transparent;
+  color: teal;
+  border: 2px solid teal;
+  border-radius: 100px;
+  min-width: 170px; 
+  min-height: 30px;
+}
+
+/* Optional: tone down stars for secondary */
+.custom-button.secondary .star {
+  opacity: 0.3;
+}

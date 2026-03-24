@@ -9,6 +9,8 @@ import Makepayment from './components/Makepayment';
 import Notfound from './components/Notfound';
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
+import Mycarousel from './components/Mycarousel';
+import Aboutus from './components/Aboutus';
 
 function App() {
   return (
@@ -22,28 +24,23 @@ function App() {
           <br />
         </header>
 
-        <Navbar /> 
+        <Navbar />
+        
 
         <Routes>
-
-          {/* ✅ ONLY homepage has footer */}
-          <Route 
-            path="/" 
-            element={
-              <Layout>
-                <Getproducts />
-              </Layout>
-            } 
-          />
-
-          {/* ❌ ALL OTHER PAGES: NO FOOTER */}
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/addproducts" element={<Addproducts />} />
-          <Route path="/makepayment" element={<Makepayment />} />
-          <Route path="*" element={<Notfound />} />
+          
+          {/* ✅ ALL pages now inherit Layout (footer included) */}
+          <Route path="/" element={<Layout><Mycarousel /><Getproducts /></Layout>} />
+          <Route path="/signup" element={<Layout><Signup /></Layout>} />
+          <Route path="/signin" element={<Layout><Signin /></Layout>} />
+          <Route path="/addproducts" element={<Layout><Addproducts /></Layout>} />
+          <Route path="/makepayment" element={<Layout><Makepayment /></Layout>} />
+          <Route path="/aboutus" element={<Layout><Aboutus /></Layout>} />
+          <Route path="*" element={<Layout><Notfound /></Layout>} />
+          
 
         </Routes>
+
       </div>
     </Router>
   );

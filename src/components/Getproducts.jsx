@@ -59,7 +59,7 @@ const Getproducts = () => {
   >
     <div className='row'>
       <br /> <br />
-      <h1 className=" title1"> | AVAILABLE STATIONERY |</h1> <br />
+      <h1 className=" title1 mt-5"> | AVAILABLE STATIONERY |</h1> <br />
 
       {loading && <Loader />}
       <h4 className="text-danger">{error}</h4>
@@ -85,6 +85,11 @@ const Getproducts = () => {
               <button
                 className="btn btn-outline-success BTN"
                 onClick={() => navigate("/makepayment", { state: { product } })}
+                style={{
+    fontSize: "25px",
+    fontFamily: "'Goudy Old Style', Garamond, 'Times New Roman', serif",
+    padding: "0.4rem 1rem"
+  }}
               >
                 PURCHASE NOW
               </button>

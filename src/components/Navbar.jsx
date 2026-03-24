@@ -35,7 +35,7 @@ function Navbar() {
                 className="nav-link"
                 style={{  color: "maroon", fontSize: '30px'}}
               >
-                Home
+                ~HOME~
               </Link>
 
               <Link
@@ -43,7 +43,7 @@ function Navbar() {
                 className="nav-link"
                 style={{  color: "maroon", fontSize: '30px' }}
               >
-                Sign Up
+                ~Sign Up~
               </Link>
 
               <Link
@@ -51,7 +51,7 @@ function Navbar() {
                 className="nav-link"
                 style={{  color: "maroon", fontSize: '30px' }}
               >
-                Sign In
+                ~Sign In~
               </Link>
 
               <Link
@@ -59,7 +59,15 @@ function Navbar() {
                 className="nav-link"
                 style={{  color: "maroon", fontSize: '30px' }}
               >
-                Add Products
+                ~Add Products~
+              </Link>
+
+              <Link
+                to="/aboutus"
+                className="nav-link"
+                style={{  color: "maroon", fontSize: '30px' }}
+              >
+                ~ABOUT_US~
               </Link>
 
             </div>

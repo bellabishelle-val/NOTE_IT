@@ -138,7 +138,7 @@ const Signup = () => {
           <br /> <br />
           <div className="d-inline-block ml-2">
             <Link to={'/signin'} style={{ textDecoration: 'none' }}>
-              <Button text="Sign In" />
+              <Button text="Sign In" variant='secondary' />
             </Link>
           </div>
         </div>

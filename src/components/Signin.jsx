@@ -88,7 +88,7 @@ const Signin = () => {
 
           {/* Signin Button using reusable Button component */}
           <div className="mb-4">
-            <Button text="SIGN IN" type="submit" />
+            <Button text="SIGN IN" type="submit" variant="primary" />
           </div>
         </form>
         <br />
@@ -99,7 +99,7 @@ const Signin = () => {
           <br /> <br />
           <div className="d-inline-block ml-2">
             <Link to={'/signup'} style={{ textDecoration: 'none' }}>
-              <Button text="Sign Up" />
+              <Button text="Sign Up" variant="secondary"/>
             </Link>
           </div>
         </div>

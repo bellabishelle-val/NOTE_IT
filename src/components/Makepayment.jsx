@@ -86,8 +86,9 @@ const Makepayment = () => {
 
 
                     <input type="number"
-                    className='form-control '
+                    className='form-control mb-5 p-3'
                     placeholder='Enter the phone number 254XXXXXXXXX'
+                    style={{ fontSize: '1.4rem', borderRadius: '15px', border: '1px solid #264361', fontFamily: "'Roboto', sans-serif", color: '#333' }}
                     required
                     value={number}
                     onChange = {(e) => setNumber(e.target.value)} /> <br />
@@ -95,8 +96,13 @@ const Makepayment = () => {
                     {/* {number} */}
 
                     <input type="submit"
-                    value="Make Payment"
-                    className='btn btn-success'  />
+                    value="PURCHASE"
+                    className='btn btn-outline-danger BTN' 
+                    style={{
+    fontSize: "25px",
+    fontFamily: "'Goudy Old Style', Garamond, 'Times New Roman', serif",
+    padding: "0.5rem 1rem", 
+  }} />
                 </form>
             </div>
         </div>

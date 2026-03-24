@@ -13,7 +13,7 @@ const Footer = () => {
             style={{
               fontVariant: "small-caps",
               fontSize: "250%",
-              color: "darkgreen",
+              color: "sienna",
             }}
           >
             Introducing Our Back-to-School Sale!
@@ -43,7 +43,7 @@ const Footer = () => {
             style={{
               fontVariant: "small-caps",
               fontSize: "250%",
-              color: "darkgreen",
+              color: "sienna",
             }}
           >
             Get in Touch
@@ -99,7 +99,7 @@ const Footer = () => {
             style={{
               fontVariant: "small-caps",
               fontSize: "250%",
-              color: "darkgreen",
+              color: "sienna",
             }}
           >
             Stay Connected
