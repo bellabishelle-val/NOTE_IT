@@ -1,0 +1,90 @@
+.custom-card {
+  background: linear-gradient(135deg, #fff0f3, #fff7f9);
+
+  border: 1px solid rgba(220, 120, 140, 0.2);
+
+  box-shadow:
+    0 4px 12px rgba(200, 120, 140, 0.15),
+    inset 0 0 8px rgba(255, 255, 255, 0.5);
+    transition: all 0.35s ease;
+}
+
+/* soften glow layer */
+.custom-card::before {
+  background: radial-gradient(
+    circle at top left,
+    rgba(212, 122, 140, 0.25),  /* soft rose glow */
+    transparent 65%
+  );
+  opacity: 0.35;
+}
+
+/* refined hover */
+.custom-card:hover {
+  transform: translateY(-10px) scale(1.02);
+
+  box-shadow:
+    0 14px 30px rgba(139, 58, 74, 0.25),   /* deep rose shadow */
+    0 0 18px rgba(212, 122, 140, 0.35);   /* soft blush glow */
+}
+/* Glow intensifies */
+.custom-card:hover::before {
+  opacity: 1;
+}
+
+/* Image styling */
+.product_img {
+  transition: transform 0.4s ease;
+}
+
+.custom-card:hover .product_img {
+  transform: scale(1.05);
+}
+
+/* Button glow effect */
+.BTN {
+  transition: all 0.3s ease;
+}
+
+.custom-card:hover .BTN {
+  background-color: #20c997;
+  color: white;
+  box-shadow: 0 0 10px #20c997, 0 0 20px #20c997;
+}
+
+/* Typography polish */
+.pn {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.pd {
+  color: #555;
+}
+
+.pc {
+  color: #008080;
+}
+.custom-card:hover::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, rgba(0,255,200,0.4), transparent, rgba(0,255,200,0.4));
+  z-index: -1;
+  filter: blur(8px);
+}
+.custom-card::before,
+.custom-card::after {
+  pointer-events: none;
+}
+.BTN {
+  border-color: #d47a8c;
+  color: #b85c72;
+}
+
+.custom-card:hover .BTN {
+  background-color: #d47a8c;
+  color: white;
+  box-shadow: 0 0 10px rgba(212, 122, 140, 0.5);
+}

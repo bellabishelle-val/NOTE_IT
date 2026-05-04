@@ -67,7 +67,7 @@ function Navbar() {
                 className="nav-link"
                 style={{  color: "maroon", fontSize: '30px' }}
               >
-                ~ABOUT_US~
+                ABOUT_US
               </Link>
 
             </div>

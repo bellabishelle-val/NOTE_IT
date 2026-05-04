@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Loader from './Loader';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import "../css/CardEffects.css";
+import { useLocation } from "react-router-dom";
+import makepayment from "./Makepayment.jsx";
+
 
 const Getproducts = () => {
 
@@ -12,6 +16,8 @@ const Getproducts = () => {
 
   // declare the navigate hook
   const navigate = useNavigate()
+
+  const { state } = useLocation();
 
   // below we specify the image base URL
   const img_url = "https://varli.alwaysdata.net/static/images/"
@@ -66,7 +72,7 @@ const Getproducts = () => {
 
       {products.map((product) => (
         <div key={product.id} className="col-md-3 justify-content-center mb-3">
-          <div className="card shadow">
+          <div className="card shadow custom-card">
             <img 
               src={img_url + product.product_photo} 
               alt="product image"

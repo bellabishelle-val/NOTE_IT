@@ -1,0 +1,127 @@
+/* =========================
+   PAYMENT CARD CORE
+========================= */
+.payment-card {
+  max-width: 700px;
+  width: 90%;
+  margin: 60px auto;
+  padding: 25px;
+
+  border-radius: 24px;
+
+  /* Soft alpine pink */
+  background: linear-gradient(135deg, #fdecec, #fff6f7);
+
+  border: 1px solid rgba(220, 120, 140, 0.25);
+
+  box-shadow:
+    0 10px 25px rgba(200, 120, 140, 0.2),
+    inset 0 0 10px rgba(255, 255, 255, 0.6);
+
+  transition: all 0.3s ease;
+
+  /* Typography foundation */
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+  transition: all 0.35s ease;
+}
+
+/* =========================
+   HOVER (CONTROLLED)
+========================= */
+.payment-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 16px 35px rgba(139, 58, 74, 0.25),   /* deep rose depth */
+    0 0 20px rgba(212, 122, 140, 0.25);   /* soft blush glow */
+}
+
+/* =========================
+   INNER SPACING
+========================= */
+.payment-card .card-body {
+  padding: 30px;
+  text-align: center;
+}
+
+/* =========================
+   TITLES (AUTHORITY)
+========================= */
+.payment-card h1,
+.payment-card h2,
+.payment-card h3 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #8b3a4a;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   BODY TEXT (READABILITY)
+========================= */
+.payment-card p,
+.payment-card h5 {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   PRICE (FOCUS ELEMENT)
+========================= */
+.payment-card .pc {
+  font-size: 30px;
+  font-weight: 700;
+  color: #b85c72;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   BUTTON (CONVERSION DRIVER)
+========================= */
+.payment-card .BTN {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  margin-top: 15px;
+
+  border-radius: 10px;
+  border: 1px solid #d47a8c;
+  color: #b85c72;
+
+  transition: all 0.3s ease;
+}
+
+.payment-card .BTN:hover {
+  background-color: #a15665;
+  color: white;
+  box-shadow: 0 0 12px rgba(212, 122, 140, 0.4);
+}
+.payment-card input,
+.payment-card textarea {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+
+  border-radius: 10px;
+  border: 1px solid rgba(220, 120, 140, 0.25);
+
+  padding: 10px 12px;
+
+  transition: all 0.3s ease;
+}
+
+/* focus state = controlled glow (not neon chaos) */
+.payment-card input:focus,
+.payment-card textarea:focus {
+  outline: none;
+  border-color: #d47a8c;
+  box-shadow: 0 0 8px rgba(212, 122, 140, 0.25);
+}

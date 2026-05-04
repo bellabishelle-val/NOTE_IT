@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
+import "../css/Payment.css";
 const Makepayment = () => {
 
     // destructure the details passed from the Getproducts component
@@ -67,7 +68,7 @@ const Makepayment = () => {
 
         <h1 className="title1">Make Payment - Lipa na Mpesa</h1> <br /> <br /> 
 
-        <div className="col-md-4 card shadow p-4">
+        <div className="col-md-4 card shadow p-4 custom-card payment-card">
             <img src={img_url + product.product_photo} alt="Product" className='product_img'/>
             <div className='card-body'>
                 <h2 className="pn">{product.product_name}</h2> <br /> 
