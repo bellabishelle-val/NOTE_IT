@@ -1,14 +1,18 @@
 import React from "react";
-import "../css/Loader.css"; // import the external css
+import "../css/Loader.css";
+
 const Loader = () => {
   return (
-    <section className="loader">
-      <div className="slider" style={{ "--i": 0 }}></div>
-      <div className="slider" style={{ "--i": 1 }}></div>
-      <div className="slider" style={{ "--i": 2 }}></div>
-      <div className="slider" style={{ "--i": 3 }}></div>
-      <div className="slider" style={{ "--i": 4 }}></div>
-    </section>
+    <div className="loading-container">
+      <div className="modern-loader">
+        <div className="loader-circle"></div>
+        <div className="loader-circle"></div>
+        <div className="loader-circle"></div>
+        <div className="loader-circle"></div>
+      </div>
+      <p className="loading-text">Loading amazing products...</p>
+    </div>
   );
 };
+
 export default Loader;

@@ -2,109 +2,110 @@ import React, { useEffect, useState } from 'react'
 import Loader from './Loader';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import "../css/CardEffects.css";
-import { useLocation } from "react-router-dom";
-import makepayment from "./Makepayment.jsx";
-
+import "../css/ProductCards.css";
+import { useCart } from '../contexts/CartContext';
 
 const Getproducts = () => {
-
-  // initilaize hooks to help manage the state of your application
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  // declare the navigate hook
   const navigate = useNavigate()
-
-  const { state } = useLocation();
-
-  // below we specify the image base URL
   const img_url = "https://varli.alwaysdata.net/static/images/"
+  const { addToCart, addToWishlist, isInWishlist } = useCart();
 
-  // create a function to help you fetch the product from ur API
   const fetchProducts = async() =>{
     try{
-      // 4. update the loading hook
       setLoading(true)
-
-      // 5. interact with endpoint for fetching the products
       const response = await axios.get("https://varli.alwaysdata.net/api/get_products")
-
-      // 6. update products hook with response given from the API
       setProducts(response.data)
-
-      // 7. set loading hook back to default
       setLoading(false)
     }
     catch(error){
-      // if there is an error
-      // set loading hook back ot default
       setLoading(false)
-
-      //update the error hook with a message
       setError(error.message)
     }
   }
 
-  // we shall use the useEffect hook. it enables us to automatically re-render new features in case of any changes
   useEffect(() => {
     fetchProducts()
   }, [])
 
-  // console.log(products)
-
-
   return (
-  <div
-    style={{
-      backgroundImage: "url('/images/stat.png')",
-      backgroundSize: "cover",
-      minHeight: "100vh"
-    }}
-  >
-    <div className='row'>
-      <br /> <br />
-      <h1 className=" title1 mt-5"> | AVAILABLE STATIONERY |</h1> <br />
-
-      {loading && <Loader />}
-      <h4 className="text-danger">{error}</h4>
-
-      {products.map((product) => (
-        <div key={product.id} className="col-md-3 justify-content-center mb-3">
-          <div className="card shadow custom-card">
-            <img 
-              src={img_url + product.product_photo} 
-              alt="product image"
-              className='product_img mt-3'
-            />
-
-            <div className="card-body">
-              <h2 className="pn"> ~{product.product_name}~ </h2> <br />
-
-              <h5 className="text-left pd">
-                {product.product_description?.slice(0, 80)}...
-              </h5> <br />
-
-              <h2 className="pc"> $ {product.product_cost} </h2> <br />
-
-              <button
-                className="btn btn-outline-success BTN"
-                onClick={() => navigate("/makepayment", { state: { product } })}
-                style={{
-    fontSize: "25px",
-    fontFamily: "'Goudy Old Style', Garamond, 'Times New Roman', serif",
-    padding: "0.4rem 1rem"
-  }}
-              >
-                PURCHASE NOW
-              </button>
-            </div>
-          </div>
+    <div className="products-container">
+      <div className="container">
+        <div className="text-center mb-5">
+          <h1 className="title1">| AVAILABLE STATIONERY |</h1>
+          <p className="lead text-muted">Discover our premium collection of stationery essentials</p>
         </div>
-      ))}
+
+        {loading && <Loader />}
+        {error && <div className="alert alert-danger text-center">{error}</div>}
+
+        <div className="row">
+          {products.map((product, index) => (
+            <div key={product.id} className="col-lg-4 col-md-4 col-sm-6 mb-4">
+              <div className="custom-card card-animation">
+                <div className="product-image-container">
+                  <img 
+                    src={img_url + product.product_photo} 
+                    alt={product.product_name}
+                    className='product_img'
+                  />
+                  <div className="product-overlay">
+                    <button className="quick-view-btn">Quick View</button>
+                  </div>
+                  {product.product_cost < 50 && (
+                    <div className="product-badge">Best Deal</div>
+                  )}
+                </div>
+
+                <div className="card-body">
+                  <h3 className="product-name">{product.product_name}</h3>
+                  
+                  <p className="product-description">
+                    {product.product_description?.slice(0, 80)}...
+                  </p>
+
+                  <div className="product-price">${product.product_cost}</div>
+
+                  <div className="product-actions">
+                    <button
+                      className="cart-btn"
+                      onClick={() => addToCart(product)}
+                      title="Add to Cart"
+                    >
+                      🛒 Add to Cart
+                    </button>
+                    <button
+                      className={`wishlist-btn ${isInWishlist(product.id) ? 'in-wishlist' : ''}`}
+                      onClick={() => addToWishlist(product)}
+                      title="Add to Wishlist"
+                    >
+                      {isInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
+                    </button>
+                  </div>
+
+                  <button
+                    className="purchase-btn w-100"
+                    onClick={() => navigate("/makepayment", { state: { product } })}
+                  >
+                    Purchase Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {!loading && products.length === 0 && (
+          <div className="text-center py-5">
+            <h3 className="text-muted">No products available at the moment</h3>
+            <p className="text-muted">Check back soon for new arrivals!</p>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-)
+  )
 }
+
 export default Getproducts;

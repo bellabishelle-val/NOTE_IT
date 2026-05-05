@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
+import { useAuth } from '../contexts/AuthContext';
 
 
 const Signin = () => {
@@ -11,11 +12,12 @@ const Signin = () => {
 
   // Declare the three additional hooks
   const [loading, setLoading] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success] = useState("");
   const [error, setError] = useState("");
 
   // below we have the useNavigate hook to redirect us to another page on successful login
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   // below is function to handle the signin action
   const handleSubmit = async(e) =>{
@@ -41,8 +43,8 @@ const Signin = () => {
       // check whether user exists as part of ur response from the API
       if(response.data.user){
         // if user is there, definitely details entered during signin are correct
-        // Store user details in local storage
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        // User details are now stored by login function which uses correct keys
+        login(response.data.user, "dummy-token"); // You can replace "dummy-token" with actual token if available
         // if it is successful let a person get redirected to another page
         navigate("/");
       } else {
