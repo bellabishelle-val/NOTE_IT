@@ -69,7 +69,7 @@ const Footer = () => {
                 </h3>
                 <div className="social-links">
                   <a href="https://www.facebook.com" className="social-link">
-                    <img src="images/fb.png" alt="Facebook" className="social-icon" />
+                    <img src="/images/fb.png" alt="Facebook" className="social-icon" />
                   </a>
                   <a href="https://instagram.com" className="social-link">
                     <img src="images/in.png" alt="Instagram" className="social-icon" />
