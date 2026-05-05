@@ -25,7 +25,10 @@ export const CartProvider = ({ children }) => {
       setCart(JSON.parse(savedCart));
     }
     if (savedWishlist) {
-      setWishlist(JSON.parse(savedWishlist));
+      const parsedWishlist = JSON.parse(savedWishlist);
+      // Filter out null/undefined items from wishlist
+      const cleanedWishlist = parsedWishlist.filter(item => item && item.id);
+      setWishlist(cleanedWishlist);
     }
   }, []);
 
@@ -85,20 +88,49 @@ export const CartProvider = ({ children }) => {
 
   // Add to wishlist
   const addToWishlist = (product) => {
+    console.log('🛒 addToWishlist called with:', product);
+    console.log('🛒 Current wishlist before:', wishlist);
+    
+    // Prevent null or undefined products from being added
+    if (!product || !product.id) {
+      console.log('🛒 Invalid product, not adding to wishlist');
+      return;
+    }
+    
     const exists = wishlist.find(item => item.id === product.id);
+    console.log('🛒 Product exists in wishlist:', exists);
     if (!exists) {
-      setWishlist(prev => [...prev, product]);
+      setWishlist(prev => {
+        console.log('🛒 Adding to wishlist, new state:', [...prev, product]);
+        return [...prev, product];
+      });
+    } else {
+      console.log('🛒 Product already in wishlist, not adding');
     }
   };
 
   // Remove from wishlist
   const removeFromWishlist = (productId) => {
-    setWishlist(prev => prev.filter(item => item.id !== productId));
+    console.log('🗑️ removeFromWishlist called with:', productId);
+    setWishlist(prev => {
+      console.log('🗑️ Removing from wishlist, new state:', prev.filter(item => item.id !== productId));
+      return prev.filter(item => item.id !== productId);
+    });
   };
 
   // Check if product is in wishlist
   const isInWishlist = (productId) => {
-    return wishlist.some(item => item.id === productId);
+    console.log('🔍 isInWishlist called with:', productId, 'current wishlist:', wishlist);
+    if (!wishlist || !Array.isArray(wishlist)) {
+      console.log('🔍 Wishlist is not an array or is empty, returning false');
+      return false;
+    }
+    const result = wishlist.some(item => {
+      console.log('🔍 Comparing item.id:', item.id, 'with productId:', productId, 'result:', item.id === productId);
+      return item.id === productId;
+    });
+    console.log('🔍 isInWishlist result:', result);
+    return result;
   };
 
   // Calculate cart total

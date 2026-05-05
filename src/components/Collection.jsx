@@ -4,8 +4,18 @@ import '../css/Collection.css';
 
 
 const Collection = () => {
-  const { addToCart, addToWishlist, isInWishlist } = useCart();
+  const { addToCart, addToWishlist, wishlist } = useCart();
   const [activeCategory, setActiveCategory] = useState('all');
+  
+  // Create a Set of wishlist item IDs for quick lookup (filter out null items)
+  const wishlistItemIds = new Set(
+    wishlist?.filter(item => item && item.id).map(item => item.id) || []
+  );
+  
+  // Local function to check if product is in wishlist
+  const isProductInWishlist = (productId) => {
+    return wishlistItemIds.has(productId);
+  };
 
   const categories = [
     { id: 'all', name: 'All Collections', icon: '📚' },
@@ -170,6 +180,8 @@ const Collection = () => {
   };
 
   const handleAddToWishlist = (product) => {
+    console.log('🎯 Collection handleAddToWishlist called with product:', product);
+    console.log('🎯 Product ID type:', typeof product.id, 'Product ID value:', product.id);
     addToWishlist(product);
   };
 
@@ -243,11 +255,11 @@ const Collection = () => {
                         🛒 Add to Cart
                       </button>
                       <button
-                        className={`wishlist-btn ${isInWishlist(product.id) ? 'in-wishlist' : ''}`}
+                        className={`wishlist-btn ${isProductInWishlist(product.id) ? 'in-wishlist' : ''}`}
                         onClick={() => handleAddToWishlist(product)}
                         title="Add to Wishlist"
                       >
-                        {isInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
+                        {isProductInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
                       </button>
                     </div>
                   </div>

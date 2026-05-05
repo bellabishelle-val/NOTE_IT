@@ -11,12 +11,38 @@ const Getproducts = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate()
   const img_url = "https://varli.alwaysdata.net/static/images/"
-  const { addToCart, addToWishlist, isInWishlist } = useCart();
+  const { addToCart, addToWishlist, wishlist } = useCart();
+  
+  // Create a Set of wishlist item IDs for quick lookup (filter out null items)
+  const wishlistItemIds = new Set(
+    wishlist?.filter(item => item && (item.id || item.product_id)).map(item => item.id || item.product_id) || []
+  );
+  
+  // Local function to check if product is in wishlist
+  const isProductInWishlist = (productId) => {
+    return wishlistItemIds.has(productId);
+  };
+
+  const handleAddToWishlist = (product) => {
+    console.log('🏠 Home page addToWishlist called with product:', product);
+    console.log('🏠 Product ID type:', typeof product.product_id, 'Product ID value:', product.product_id);
+    console.log('🏠 Current wishlist:', wishlist);
+    console.log('🏠 isProductInWishlist result:', isProductInWishlist(product.product_id));
+    
+    // Create a normalized product object with id property for consistency
+    const normalizedProduct = {
+      ...product,
+      id: product.product_id // Use product_id as id for consistency
+    };
+    
+    addToWishlist(normalizedProduct);
+  };
 
   const fetchProducts = async() =>{
     try{
       setLoading(true)
       const response = await axios.get("https://varli.alwaysdata.net/api/get_products")
+      console.log('🏠 Response from API:', response);
       setProducts(response.data)
       setLoading(false)
     }
@@ -77,11 +103,11 @@ const Getproducts = () => {
                       🛒 Add to Cart
                     </button>
                     <button
-                      className={`wishlist-btn ${isInWishlist(product.id) ? 'in-wishlist' : ''}`}
-                      onClick={() => addToWishlist(product)}
+                      className={`wishlist-btn ${isProductInWishlist(product.product_id) ? 'in-wishlist' : ''}`}
+                      onClick={() => handleAddToWishlist(product)}
                       title="Add to Wishlist"
                     >
-                      {isInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
+                      {isProductInWishlist(product.product_id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
                     </button>
                   </div>
 

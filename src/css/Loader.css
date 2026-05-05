@@ -6,6 +6,138 @@
   justify-content: center;
   padding: 3rem;
   min-height: 300px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(230, 126, 34, 0.1));
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.cool-loader {
+  margin-bottom: 2rem;
+}
+
+.stationery-loader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Pen Loader */
+.pen-loader {
+  position: relative;
+  width: 60px;
+  height: 120px;
+  animation: penFloat 3s ease-in-out infinite;
+}
+
+.pen-body {
+  width: 20px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  border-radius: 10px 10px 5px 5px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+}
+
+.pen-tip {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid var(--primary-color);
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+}
+
+.pen-clip {
+  width: 30px;
+  height: 15px;
+  background: linear-gradient(135deg, #c0c0c0, #ffd700);
+  border-radius: 5px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Notebook Loader */
+.notebook-loader {
+  position: relative;
+  width: 80px;
+  height: 100px;
+  animation: notebookFlip 4s ease-in-out infinite;
+}
+
+.notebook-cover {
+  width: 80px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary-color), #34495e);
+  border-radius: 5px;
+  position: absolute;
+  box-shadow: 0 5px 20px rgba(44, 62, 80, 0.3);
+}
+
+.notebook-pages {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 70px;
+  height: 90px;
+}
+
+.page {
+  width: 70px;
+  height: 90px;
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.page:nth-child(1) {
+  transform: translateX(0px);
+  animation: pageFlip 4s ease-in-out infinite;
+}
+
+.page:nth-child(2) {
+  transform: translateX(2px);
+  animation: pageFlip 4s ease-in-out infinite 0.1s;
+}
+
+.page:nth-child(3) {
+  transform: translateX(4px);
+  animation: pageFlip 4s ease-in-out infinite 0.2s;
+}
+
+/* Dots Loader */
+.dots-loader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  border-radius: 50%;
+  animation: dotBounce 1.5s ease-in-out infinite;
+  box-shadow: 0 3px 10px rgba(230, 126, 34, 0.3);
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
 }
 
 .modern-loader {
@@ -57,6 +189,65 @@
   color: var(--text-light);
   text-align: center;
   animation: pulse 2s ease-in-out infinite;
+}
+
+.loading-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite 0.5s;
+}
+
+/* Animations */
+@keyframes penFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes notebookFlip {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes pageFlip {
+  0%, 100% {
+    transform: translateX(0px) rotateY(0deg);
+  }
+  50% {
+    transform: translateX(10px) rotateY(10deg);
+  }
+}
+
+@keyframes dotBounce {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Fallback for old loader */
