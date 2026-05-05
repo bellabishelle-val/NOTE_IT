@@ -165,6 +165,11 @@
   transition: transform 0.3s ease;
 }
 
+/* Special styling for Facebook logo to make it visible */
+.social-link[href*="facebook"] .social-icon {
+  filter: brightness(0) invert(0) drop-shadow(0 0 3px rgba(66, 103, 178, 0.3));
+}
+
 .social-link:hover .social-icon {
   transform: scale(1.1);
 }
