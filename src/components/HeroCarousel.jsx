@@ -27,8 +27,8 @@ const HeroCarousel = () => {
       image: '/images/carousel3.jpg',
       title: 'Professional Office Supplies',
       subtitle: 'Everything you need for a productive and organized workspace',
-      buttonText: 'LEARN MORE',
-      buttonLink: '/aboutus'
+      buttonText: 'EXPLORE COLLECTION',
+      buttonLink: '/collection'
     }
   ];
 
