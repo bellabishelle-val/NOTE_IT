@@ -1,12 +1,19 @@
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 import '../css/Cart.css';
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, clearCart, cartTotal } = useCart();
+  const navigate = useNavigate();
 
   const handleQuantityChange = (productId, newQuantity) => {
     updateQuantity(productId, parseInt(newQuantity));
+  };
+
+  const handleCheckout = () => {
+    // Navigate to payment page with cart data
+    navigate('/makepayment', { state: { cart: cart, total: cartTotal * 1.1 } });
   };
 
   if (cart.length === 0) {
@@ -127,7 +134,7 @@ const Cart = () => {
                 <button className="btn btn-outline-secondary clear-cart-btn" onClick={clearCart}>
                   Clear Cart
                 </button>
-                <button className="btn btn-primary checkout-btn">
+                <button className="btn btn-primary checkout-btn" onClick={handleCheckout}>
                   Proceed to Checkout
                 </button>
               </div>
