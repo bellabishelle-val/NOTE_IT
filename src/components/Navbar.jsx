@@ -78,6 +78,12 @@ function Navbar() {
                 </li>
               )}
               <li className="nav-item">
+                <Link to="/collection" className="nav-link modern-nav-link">
+                  <span className="nav-icon">📚</span>
+                  Collections
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/aboutus" className="nav-link modern-nav-link">
                   <span className="nav-icon">ℹ️</span>
                   About Us
