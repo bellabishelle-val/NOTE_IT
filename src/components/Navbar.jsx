@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Navbar.css";
 import CartIcon from "./CartIcon";
@@ -7,6 +7,18 @@ import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
   const { isAuthenticated, logout } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    if (sidebar && mainContent) {
+      sidebar.classList.toggle('open');
+      mainContent.classList.toggle('sidebar-open');
+    }
+  };
 
   return (
     <section className="navbar-section">
@@ -70,33 +82,50 @@ function Navbar() {
                 </li>
               )}
               {isAuthenticated && (
-                <li className="nav-item">
-                  <Link to="/addproducts" className="nav-link modern-nav-link">
-                    <span className="nav-icon">➕</span>
-                    Add Products
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link to="/addproducts" className="nav-link modern-nav-link">
+                      <span className="nav-icon">➕</span>
+                      Add Products
+                    </Link>
+                  </li>
+                </>
               )}
-              <li className="nav-item">
+                            <li className="nav-item">
                 <Link to="/collection" className="nav-link modern-nav-link">
                   <span className="nav-icon">📚</span>
                   Collections
                 </Link>
               </li>
-              <li className="nav-item">
+                                          <li className="nav-item">
                 <Link to="/aboutus" className="nav-link modern-nav-link">
                   <span className="nav-icon">ℹ️</span>
                   About Us
                 </Link>
               </li>
-            </ul>
+              </ul>
             
             {/* Cart and Wishlist Icons */}
             <div className="navbar-icons">
               <WishlistIcon />
               <CartIcon />
+              {isAuthenticated && (
+                <button 
+                  className="nav-link modern-nav-link sidebar-toggle-nav"
+                  onClick={() => {
+                    const sidebar = document.querySelector('.sidebar');
+                    if (sidebar) {
+                      sidebar.classList.toggle('open');
+                    }
+                  }}
+                >
+                  <span className="nav-icon">☰</span>
+                  Menu
+                </button>
+              )}
             </div>
-          </div>
+            
+                      </div>
         </nav>
       </div>
     </section>

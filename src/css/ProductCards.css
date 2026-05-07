@@ -5,6 +5,12 @@
   min-height: 100vh;
 }
 
+.purchase-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .custom-card {
   border: none;
   border-radius: 16px;

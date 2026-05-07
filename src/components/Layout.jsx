@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
+import Sidebar from "./Sidebar";
+import { useAuth } from '../contexts/AuthContext';
+import "../css/Layout.css";
 
 const Layout = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <>
-      {/* You can also add Navbar here later */}
-      
-      {children}
-
+      {isAuthenticated && <Sidebar />}
+      <div className="main-content">
+        {children}
+      </div>
       <Footer />
     </>
   );

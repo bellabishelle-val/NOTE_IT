@@ -20,8 +20,20 @@ import Wishlist from './components/Wishlist';
 import Chatbot from './components/Chatbot';
 import ScrollToTop from './components/ScrollToTop';
 import Collection from './components/Collection';
+import PremiumBenefits from './components/PremiumBenefits';
+import UserDashboard from './components/UserDashboard';
+import Notebook from './components/Notebook';
+import NotebookInput from './components/NotebookInput';
+import TaskManager from './components/TaskManager';
+import MpesaPayment from './components/MpesaPayment';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    // Auto-scroll to top on route change
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <AuthProvider>
       <CartProvider>
@@ -46,10 +58,16 @@ function App() {
           <Route path="/signin" element={<Layout><Signin /></Layout>} />
           <Route path="/addproducts" element={<Layout><ProtectedRoute><Addproducts /></ProtectedRoute></Layout>} />
           <Route path="/makepayment" element={<Layout><Makepayment /></Layout>} />
+          <Route path="/notebook" element={<Layout><ProtectedRoute><Notebook /></ProtectedRoute></Layout>} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/premium" element={<PremiumBenefits />} />
+          <Route path="/mpesa-payment" element={<Layout><ProtectedRoute><MpesaPayment /></ProtectedRoute></Layout>} />
           <Route path="/aboutus" element={<Layout><Aboutus /></Layout>} />
-          <Route path="/cart" element={<Layout><Cart /></Layout>} />
           <Route path="/wishlist" element={<Layout><Wishlist /></Layout>} />
-          <Route path="/collection" element={<Layout><Collection /></Layout>} />
+          <Route path="/cart" element={<Layout><Cart /></Layout>} />
+          <Route path="/dashboard" element={<Layout><ProtectedRoute><UserDashboard /></ProtectedRoute></Layout>} />
+          <Route path="/tasks" element={<Layout><ProtectedRoute><TaskManager /></ProtectedRoute></Layout>} />
+          
           <Route path="*" element={<Layout><Notfound /></Layout>} />
           
 
