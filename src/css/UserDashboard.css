@@ -252,13 +252,15 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2);
   position: relative;
   overflow: hidden;
-  min-height: 320px;
+  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Georgia', 'Times New Roman', serif;
   backdrop-filter: blur(8px);
   border: 2px solid rgba(255, 255, 255, 0.1);
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .motivation-card:hover {
@@ -304,6 +306,11 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   letter-spacing: 0.5px;
   font-weight: 400;
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  margin: 1.5rem 0;
 }
 
 .motivation-author {
@@ -673,6 +680,25 @@
   .motivation-image {
     max-width: 100%;
   }
+  
+  .motivation-card {
+    min-height: 320px;
+    padding: 2rem;
+  }
+  
+  .motivation-text {
+    font-size: 1.1rem;
+  }
+  
+  .motivation-title {
+    font-size: 1.5rem;
+  }
+  
+  .control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -692,5 +718,41 @@
   .filter-btn {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
+  }
+  
+  .motivation-card {
+    min-height: 280px;
+    padding: 1.5rem;
+  }
+  
+  .motivation-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .motivation-title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  
+  .motivation-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+  
+  .motivation-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .motivation-actions .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 }

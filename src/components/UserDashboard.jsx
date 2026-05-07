@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import TaskManager from './TaskManager';
+import ColoringSketch from './ColoringSketch';
+import TypewriterQuote from './TypewriterQuote';
 import '../css/UserDashboard.css';
 
 // Custom localStorage hook
@@ -452,6 +454,13 @@ const UserDashboard = () => {
 
   const renderOverview = () => (
     <div className="dashboard-overview">
+      {/* Daily Dedication - Featured Gem */}
+      <div className="row mb-4">
+        <div className="col-12">
+          <TypewriterQuote />
+        </div>
+      </div>
+      
       <div className="row g-4 mb-4">
         <div className="col-lg-3 col-md-6">
           <div className="stat-card">
@@ -514,17 +523,54 @@ const UserDashboard = () => {
         <div className="col-lg-4">
           <div className="dashboard-card">
             <h3 className="card-title">Daily Motivation</h3>
-            <div className="motivation-card">
-              <div className="motivation-content">
-                <h4 className="motivation-title">{motivationCards[currentCardIndex]?.title || 'Daily Inspiration'}</h4>
-                <p className="motivation-text">{motivationCards[currentCardIndex]?.content || 'The only way to do great work is to love what you do. - Steve Jobs'}</p>
-                <div className="motivation-author">— {motivationCards[currentCardIndex]?.author || 'Steve Jobs'}</div>
+            <div className="motivation-carousel">
+              <div 
+                className="motivation-card" 
+                style={{
+                  background: motivationCards[currentCardIndex]?.color || 'linear-gradient(135deg, #14b8a6, #20c997)',
+                  fontFamily: motivationCards[currentCardIndex]?.font || 'Georgia, serif'
+                }}
+              >
+                <div className="motivation-content">
+                  <div className="motivation-icon">
+                    {motivationCards[currentCardIndex]?.icon || '✨'}
+                  </div>
+                  <h4 className="motivation-title">
+                    {motivationCards[currentCardIndex]?.title || 'Daily Inspiration'}
+                  </h4>
+                  <p className="motivation-text">
+                    {motivationCards[currentCardIndex]?.content || 'The only way to do great work is to love what you do. - Steve Jobs'}
+                  </p>
+                  <div className="motivation-author">
+                    — {motivationCards[currentCardIndex]?.author || 'Steve Jobs'}
+                  </div>
+                </div>
+              </div>
+              <div className="card-controls">
+                <button className="control-btn" onClick={prevCard} aria-label="Previous card">
+                  ←
+                </button>
+                <button className="control-btn" onClick={nextCard} aria-label="Next card">
+                  →
+                </button>
+              </div>
+              <div className="card-indicators">
+                {motivationCards.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`indicator ${index === currentCardIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentCardIndex(index)}
+                    aria-label={`Go to card ${index + 1}`}
+                  />
+                ))}
               </div>
               <div className="motivation-actions">
-                <button className="btn btn-sm btn-outline-light" onClick={prevCard}>←</button>
-                <button className="btn btn-sm btn-outline-light" onClick={nextCard}>→</button>
-                <button className="btn btn-sm btn-primary" onClick={shareCard}>Share</button>
-                <button className="btn btn-sm btn-outline-light" onClick={favoriteCard}>♥ Favorite</button>
+                <button className="btn btn-sm btn-primary" onClick={shareCard}>
+                  📤 Share
+                </button>
+                <button className="btn btn-sm btn-outline-light" onClick={favoriteCard}>
+                  ❤️ Favorite
+                </button>
               </div>
             </div>
           </div>
@@ -866,6 +912,12 @@ const UserDashboard = () => {
             >
               Motivation
             </button>
+            <button 
+              className={`tab-btn ${activeTab === 'coloring' ? 'active' : ''}`}
+              onClick={() => setActiveTab('coloring')}
+            >
+              🎨 Coloring
+            </button>
           </div>
 
           <div className="dashboard-body">
@@ -874,6 +926,7 @@ const UserDashboard = () => {
             {activeTab === 'journals' && renderJournals()}
             {activeTab === 'goals' && renderGoals()}
             {activeTab === 'motivation' && renderMotivation()}
+            {activeTab === 'coloring' && <ColoringSketch />}
           </div>
         </div>
       </div>
