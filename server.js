@@ -49,6 +49,128 @@ app.get('/api/test', async (req, res) => {
   }
 });
 
+// Import M-PESA service
+const MpesaService = require('./mpesa_service');
+
+// M-PESA Payment API endpoint
+app.post('/api/mpesa_payment', async (req, res) => {
+  try {
+    const { phone, amount, plan, user_id } = req.body;
+    
+    // Validate input
+    if (!phone || !amount || !plan) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Missing required fields: phone, amount, plan' 
+      });
+    }
+    
+    // Validate phone number format (Kenya format)
+    const phoneRegex = /^254[0-9]{9}$/;
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Invalid phone number format. Use format: 254XXXXXXXXX' 
+      });
+    }
+    
+    // Log payment attempt
+    console.log('Payment attempt:', { phone, amount, plan, user_id });
+    
+    // Initialize M-PESA service
+    const mpesaService = new MpesaService();
+    
+    // Generate unique account reference
+    const accountReference = `NOTE${plan.toUpperCase()}${Date.now()}`;
+    
+    // Convert amount to cents (M-PESA requires amount in cents)
+    const amountInCents = parseInt(amount) * 100;
+    
+    // Initiate real M-PESA STK push
+    const stkResponse = await mpesaService.initiateStkPush(phone, amountInCents, accountReference);
+    
+    if (stkResponse.ResponseCode === '0') {
+      // STK push initiated successfully
+      const paymentId = stkResponse.CheckoutRequestID;
+      
+      // Store payment record
+      try {
+        await db.query(
+          'INSERT INTO payments (user_id, phone, amount, plan, payment_id, status, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())',
+          [user_id, phone, amount, plan, paymentId, 'pending']
+        );
+      } catch (dbError) {
+        console.error('Database error:', dbError);
+      }
+      
+      res.json({ 
+        success: true, 
+        message: 'M-PESA prompt sent! Please check your phone and enter PIN.',
+        paymentId: paymentId,
+        phone: phone,
+        amount: amount,
+        plan: plan,
+        merchantRequestID: stkResponse.MerchantRequestID
+      });
+    } else {
+      // STK push failed
+      res.status(400).json({ 
+        success: false, 
+        message: `M-PESA STK push failed: ${stkResponse.errorMessage || 'Unknown error'}`,
+        errorCode: stkResponse.ResponseCode
+      });
+    }
+    
+  } catch (error) {
+    console.error('Payment error:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Payment processing failed. Please try again.' 
+    });
+  }
+});
+
+// M-PESA Callback endpoint (where Safaricom sends payment results)
+app.post('/api/mpesa/callback', async (req, res) => {
+  try {
+    console.log('M-PESA Callback received:', req.body);
+    
+    // Process the callback
+    const result = new MpesaService().processCallback(req.body);
+    
+    if (result.success) {
+      // Update payment status in database
+      await db.query(
+        'UPDATE payments SET status = ?, mpesa_receipt = ?, transaction_date = ? WHERE payment_id = ?',
+        ['completed', result.mpesaReceiptNumber, result.transactionDate, result.merchantRequestID]
+      );
+      
+      console.log('Payment completed successfully:', result);
+    } else {
+      // Update payment status to failed
+      await db.query(
+        'UPDATE payments SET status = ? WHERE payment_id = ?',
+        ['failed', result.merchantRequestID]
+      );
+      
+      console.log('Payment failed:', result.message);
+    }
+    
+    // Always respond to M-PESA with success
+    res.status(200).json({ 
+      'ResultCode': 0, 
+      'ResultDesc': 'Success' 
+    });
+    
+  } catch (error) {
+    console.error('Callback error:', error);
+    res.status(500).json({ 
+      'ResultCode': 1, 
+      'ResultDesc': 'Callback processing failed' 
+    });
+  }
+});
+
 // Get todos for user (same structure as your existing API)
 app.get('/api/get_user_todos', authenticateToken, async (req, res) => {
   try {

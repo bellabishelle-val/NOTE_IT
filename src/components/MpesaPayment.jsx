@@ -65,7 +65,7 @@ const MpesaPayment = () => {
       formdata.append("user_id", user?.id || '');
       
       // Call Mpesa payment API
-      const response = await axios.post("https://varli.alwaysdata.net/api/mpesa_payment", formdata);
+      const response = await axios.post("/api/mpesa_payment", formdata);
       
       setLoading("");
       
